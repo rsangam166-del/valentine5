@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Anya ❤️ Valentine</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ff6a88,#ff99ac);
+    font-family:'Segoe UI',sans-serif;
+    overflow:hidden;
+}
+
+.container{
+    text-align:center;
+    color:white;
+    animation:fadeScale 1.5s ease forwards;
+}
+
+@keyframes fadeScale{
+    from{opacity:0; transform:scale(0.7);}
+    to{opacity:1; transform:scale(1);}
+}
+
+h1{
+    font-size:3.5rem;
+    letter-spacing:4px;
+    margin-bottom:15px;
+}
+
+#text{
+    font-size:1.7rem;
+    letter-spacing:2px;
+    word-spacing:6px;
+    line-height:1.6;
+    margin-bottom:40px;
+    min-height:90px;
+}
+
+.buttons{
+    display:flex;
+    gap:25px;
+    justify-content:center;
+}
+
+button{
+    padding:15px 35px;
+    font-size:1.2rem;
+    border:none;
+    border-radius:50px;
+    cursor:pointer;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+#yes{
+    background:#2ecc71;
+    color:white;
+}
+
+#no{
+    background:#e74c3c;
+    color:white;
+}
+
+button:hover{
+    transform:scale(1.08);
+}
+
+.heart{
+    position:fixed;
+    bottom:-20px;
+    font-size:2rem;
+    animation:float 4s linear forwards;
+}
+
+@keyframes float{
+    from{transform:translateY(0); opacity:1;}
+    to{transform:translateY(-100vh); opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<audio autoplay loop volume="0.15">
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_9e9b6c1e54.mp3">
+</audio>
+
+<div class="container">
+    <h1>Anya ❤️</h1>
+
+    <div id="text">Will you be my Valentine?</div>
+
+    <div class="buttons">
+        <button id="yes">Yes 💖</button>
+        <button id="no">No 💔</button>
+    </div>
+</div>
+
+<script>
+const text = document.getElementById("text");
+const noBtn = document.getElementById("no");
+const yesBtn = document.getElementById("yes");
+
+let noLines = [
+ "Tune no pe click kiya naa 🥲",
+ "Chal ab maan jaa babuuuu 😭",
+ "Tune fir se no pe click kiya… mai toot gaya bhai 💔",
+ "Na kare janab na kare 😩",
+ "Hayeee mera dil 💘",
+ "Dekh le nahi milega fir mere jaisa koi 😌",
+ "Anyaaaaaaa ab maan bhi jaaa 🥺"
+];
+
+let noIndex = 0;
+
+noBtn.addEventListener("click", ()=>{
+    text.innerHTML = noLines[noIndex];
+    noIndex = (noIndex + 1) % noLines.length;
+});
+
+yesBtn.addEventListener("click", ()=>{
+    text.innerHTML = `
+    Areee tune yesss pe click kiyaa 😍<br><br>
+    Mere bina reh nahi payegi na 😌<br>
+    Mujhe pata tha tu bhi mujhe pasand karti hai 😎<br><br>
+    Chal ab ek chumma de 😘<br>
+    De bhi de abbb 😂💥<br>
+    Mere photo ko seene se chipka le saiyaan… Fevicol se 🤣❤️
+    `;
+
+    for(let i=0;i<35;i++){
+        setTimeout(createHeart, i*120);
+    }
+});
+
+function createHeart(){
+    const heart = document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="❤️";
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.fontSize = (20 + Math.random()*20) + "px";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),4000);
+}
+</script>
+
+</body>
+</html>
